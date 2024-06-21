@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Pie>
+
+<h2>
+    Pies
+</h2>
+
+@if (!Model.Any())
+{
+
+    <h1>
+        No Pie's Available
+    </h1>
+}
+else
+{
+    <table class="table table-condensed table-bordered">
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>Pie Of The Weak</th>
+            <th>Price</th>
+            <th>ACTIONS</th>
+        </tr>
+
+        @foreach (var pie in Model)
+        {
+            <tr>
+                <td>@pie.PieId</td>
+                <td>@pie.Name</td>
+                @if (pie.IsPieOfTheWeek)
+                {
+                    <td>
+                        <b>
+                            <i>
+                               
+
+                                    This Is Pie Of The Weak
+                                
+                            </i>
+                        </b>
+
+                    </td>
+                }
+
+                else
+                {
+                    <td></td>
+                }
+
+                <td>@pie.Price</td>
+
+                <td>
+                    <a asp-action="Details" asp-route-id="@pie.PieId">Details</a>
+                </td>
+            </tr>
+        }
+
+    </table>
+}
