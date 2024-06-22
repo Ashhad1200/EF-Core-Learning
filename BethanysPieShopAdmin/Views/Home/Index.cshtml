@@ -1,8 +1,21 @@
-﻿
+﻿@using BethanysPieShopAdmin.ViewModels
+@model CountViewModel
 <p>
 
     <h1>Welcome to Bethany's Pie Shop Admin</h1>
 
     <h3>Here you can control how the world eats pie!</h3>
 
+</p>
+
+<p>
+    <h1>
+        The Total Pies We Have : @Model.CountOfPies.Value
+    </h1>
+     <h1>
+        The Total Categories We Have : @Model.CountOfCategory.Value
+    </h1>
+    <h1>
+        The Total Orders We Have : @Model.CountOfOrders
+    </h1>
 </p>

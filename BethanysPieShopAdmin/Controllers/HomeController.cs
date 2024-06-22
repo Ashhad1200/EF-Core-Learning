@@ -1,21 +1,31 @@
 ﻿using BethanysPieShopAdmin.Models;
+using BethanysPieShopAdmin.Models.Repository;
+using BethanysPieShopAdmin.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace BethanysPieShopAdmin.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ICountRepository _countRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ICountRepository countRepository)
         {
-            _logger = logger;
+            _countRepository = countRepository;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            CountViewModel countViewModel = new()
+            {
+                CountOfPies = await _countRepository.AmountOfPiesAsync(),
+                CountOfCategory = await _countRepository.AmountOfCategoriesAsync(),
+                CountOfOrders = await _countRepository.AmountOfOrdersAsync(),
+            };
+
+            return View(countViewModel);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -13,6 +13,7 @@ builder.Services.AddDbContext<BethanysPieShopDbContext>(options => options.UseSq
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IPieRepository, PieRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<ICountRepository, CountRepository>();
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
